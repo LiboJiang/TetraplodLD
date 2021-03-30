@@ -1,8 +1,10 @@
 A theoretical framework to model linkage disequilibria for allotetraploid populations
 
+
 1 Introduction 
 
 At present, the TetraplodLD package is used to linkage disequilibrium analysis in the nature population of allotetraploid. This guide gives some brief instructions on how to perform the tasks of linkage disequilibrium analysis by this package. The outline of this guide is as follows:
+
 
 2 Data format
 
@@ -28,6 +30,7 @@ IND9        1     2     2     2     2      1
 
 This table indicates dosage-unknown markers, each marker contain three genotypes (aaaa=0, A___=1, AAAA=2). 
 
+
 2 Work example
 
 #Dosage-unknown marker
@@ -46,24 +49,43 @@ source("util_PC_m.R")
 
 source("util_PC.R")
 
-# Linkage disequilibrium analysis
+#Linkage disequilibrium analysis
+
 LD <- work_test1_mix(M=chr03a_m,mn=snpn)
+
 #M is a matrix; mn is a character vector giving the snp ID.
+
 #work_test1_mix produces a matrix with some or all of the following elements in :
+
 LR        The log-likelihood ratio between haplotype and diplotype models.
+
 Pv         P-value is calculated through chi-square distribution based on LR.
+
 m1_pA     The estimated allele frequency of A by haplotype model.
+
 m1_pB     The estimated allele frequency of B by haplotype model.
+
 m1_D      The estimate of the LD coefficient by haplotype model.
+
 m2_pA     The estimated allele frequency of A by diplotype model.
+
 m1_pB     The estimated allele frequency of B by diplotype model.
+
 m1_DA     The estimate of the LD coefficient at the locus A.
+
 m1_DB     The estimate of the LD coefficient at the locus B.
+
 m1_Deab    The sum of the estimate of the LD coefficient between two nonalleles at different loci on the same haplotype and the estimate of the LD coefficient between two nonalleles on different haplotypes.
+
 m1_DAb     The estimate of the LD coefficient between two alleles from SNP A and one allele from SNP B.
+
 m1_DaB     The estimate of the LD coefficient between two alleles from SNP A and one allele from SNP B.
+
 m1_DAB     between two alleles from SNP A and two alleles from SNP B.
+
 m2_DA_n, m2_DB_n, m2_Deab_n, m2_DAb_n, m2_DaB_n, m2_DAB_n  The estimate of the standardized LD coefficient.
+
+
 
 
 
