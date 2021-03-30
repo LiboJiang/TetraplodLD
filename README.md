@@ -31,7 +31,7 @@ IND9        1     2     2     2     2      1
 This table indicates dosage-unknown markers, each marker contain three genotypes (aaaa=0, A___=1, AAAA=2). 
 
 
-# 2 Work example
+# 3 Work example
 
 #Dosage-unknown marker
 
@@ -136,11 +136,11 @@ allres <- c()
 
 for(i in 1:1000){
 
-geno <- sim_geno_autoP(allpar=pall,n=500) #n represents the sample size
+    geno <- sim_geno_autoP(allpar=pall,n=500) #n represents the sample size
 
-res <- geno_est_autoP(geno=geno)
+    res <- geno_est_autoP(geno=geno)
 
-allres <- rbind(allres,res)
+    allres <- rbind(allres,res)
 
  }
  
