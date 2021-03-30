@@ -1,12 +1,12 @@
-A theoretical framework to model linkage disequilibria for allotetraploid populations
+# A theoretical framework to model linkage disequilibria for allotetraploid populations
 
 
-1 Introduction 
+# 1 Introduction 
 
 At present, the TetraplodLD package is used to linkage disequilibrium analysis in the nature population of allotetraploid. This guide gives some brief instructions on how to perform the tasks of linkage disequilibrium analysis by this package. The outline of this guide is as follows:
 
 
-2 Data format
+# 2 Data format
 
 ID         snp1  snp2  snp3  snp4  snp5  snp6
 
@@ -31,7 +31,7 @@ IND9        1     2     2     2     2      1
 This table indicates dosage-unknown markers, each marker contain three genotypes (aaaa=0, A___=1, AAAA=2). 
 
 
-2 Work example
+# 2 Work example
 
 #Dosage-unknown marker
 
@@ -87,12 +87,68 @@ m2_DA_n, m2_DB_n, m2_Deab_n, m2_DAb_n, m2_DaB_n, m2_DAB_n  The estimate of the s
 
 
 
+# 4 Computer simulation
 
+#Simulation dosage-unknown markers based on diplotype model
 
+#load functions
 
+source("util_FC.R")
 
+#The true value of LD coefficient in computer simulation 
 
+pall <- c(0.6,0.45,0.12,0.12,0.02,0.02,0.02,0.01)
 
+#1000 simulation replicates
 
+allres <- c()
 
+for(i in 1:1000){
+
+    geno <- sim_geno_auto(allpar=pall,n=500) #n represents the sample size
+    
+    res <- geno_est_auto(geno=geno)
+    
+    allres <- rbind(allres,res)
+ }
+ 
+#Calculate the mean value of the estimation paraeters
+
+colMeans(allres)
+
+#Calculate the standard deviation of the estimation paraeters
+
+apply(allres,2,sd)
+
+#Simulation dosage-known markers based on diplotype model
+
+#load functions
+
+source("util_PC.R")
+
+#The true value of LD coefficient in computer simulation 
+
+pall <- c(0.6,0.45,0.12,0.12,0.02,0.02,0.02,0.01)
+
+#1000 simulation replicates
+
+allres <- c()
+
+for(i in 1:1000){
+
+geno <- sim_geno_autoP(allpar=pall,n=500) #n represents the sample size
+
+res <- geno_est_autoP(geno=geno)
+
+allres <- rbind(allres,res)
+
+ }
+ 
+#Calculate the mean value of the estimation paraeters
+
+colMeans(allres)
+
+#Calculate the standard deviation of the estimation paraeters
+
+apply(allres,2,sd)
 
